@@ -3,5 +3,5 @@
 node_modules
 components/routes/_*
 .sass-cache/
-.DS_Store
-keys
+.DS_Storekeys.js
+keys.js

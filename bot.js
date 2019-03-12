@@ -18,7 +18,7 @@
 var env = require('node-env-file');
 env(__dirname + '/.env');
 
-const {SECRET_WIT_TOKEN}=require(`keys`)
+const {SECRET_WIT_TOKEN}=require(`./keys`)
 
 
 var Botkit = require('botkit');

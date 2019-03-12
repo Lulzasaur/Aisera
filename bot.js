@@ -18,7 +18,8 @@
 var env = require('node-env-file');
 env(__dirname + '/.env');
 
-var SECRET_WIT_TOKEN = `2D3TAPROJV2MSMZ6IHMEUKGDYYDENUSV`
+const {SECRET_WIT_TOKEN}=require(`keys`)
+
 
 var Botkit = require('botkit');
 var debug = require('debug')('botkit:main');

@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-let SECRET_API_KEY=`2c83d0901c37cc202a8f1afd54f7e378`
+const {SECRET_API_KEY}=require(`../keys`)
 
 module.exports = function(controller) {
 

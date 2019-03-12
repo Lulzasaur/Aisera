@@ -11,7 +11,7 @@
 ## Installation
 
 There are several API keys needed for this application to run. The keys.js file will be provided separately in an email and should sit in the main folder.
-<img src='https://drive.google.com/open?id=1YLt8k_GCiK12_WUxc03umSyCrXtk5xej'>
+<img src='folder.png'>
 
 ```shell
 npm install

@@ -24,7 +24,7 @@ const {SECRET_WIT_TOKEN}=require(`./keys`)
 var Botkit = require('botkit');
 var debug = require('debug')('botkit:main');
 
-var wit = require('botkit-middleware-witai')({
+let wit = require('botkit-middleware-witai')({
   token: SECRET_WIT_TOKEN
 })
 
@@ -45,6 +45,9 @@ if (process.env.MONGO_URI) {
 // Create the Botkit controller, which controls all instances of the bot.
 var controller = Botkit.socketbot(bot_options);
 
+// Enable middleware
+controller.middleware.receive.use(wit.receive);
+
 // Set up an Express-powered webserver to expose oauth and webhook endpoints
 var webserver = require(__dirname + '/components/express_webserver.js')(controller);
 
@@ -56,9 +59,6 @@ controller.openSocketServer(controller.httpserver);
 
 // Start the bot brain in motion!!
 controller.startTicking();
-
-// Enable middleware
-controller.middleware.receive.use(wit.receive);
 
 var normalizedPath = require("path").join(__dirname, "skills");
 require("fs").readdirSync(normalizedPath).forEach(function(file) {

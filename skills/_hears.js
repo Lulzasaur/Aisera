@@ -1,20 +1,12 @@
 const axios = require('axios')
-
 const {SECRET_API_KEY}=require(`../keys`)
 
 module.exports = function(controller) {
 
-  controller.on('hello', function(bot, message) {
-    bot.reply(message,'Welcome! I am a bot. I can help you with weather and general salutations.');
-  });
-
-  controller.on('welcome_back', function(bot, message) {
-    bot.reply(message,'Welcome back!');
-  });
-
-  controller.hears(['hello','hi','yo','whats up','hey','how'],'message_received',function(bot, message) {
-  
+  controller.hears(['hello','hi','yo','whats up','hey','how'],'message_received', function(bot, message) {
+   
       let conversationIntent = message.intents[0].entities.intent[0].value
+
         if(conversationIntent==='greetings'){
           bot.reply(message,'Greetings, fleshy human');
         } else if(conversationIntent==='conversation'){

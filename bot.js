@@ -23,6 +23,7 @@ const {SECRET_WIT_TOKEN}=require(`./keys`)
 
 var Botkit = require('botkit');
 var debug = require('debug')('botkit:main');
+
 var wit = require('botkit-middleware-witai')({
   token: SECRET_WIT_TOKEN
 })
@@ -53,11 +54,11 @@ require(__dirname + '/components/plugin_identity.js')(controller);
 // Open the web socket server
 controller.openSocketServer(controller.httpserver);
 
-// Enable middleware
-controller.middleware.receive.use(wit.receive);
-
 // Start the bot brain in motion!!
 controller.startTicking();
+
+// Enable middleware
+controller.middleware.receive.use(wit.receive);
 
 var normalizedPath = require("path").join(__dirname, "skills");
 require("fs").readdirSync(normalizedPath).forEach(function(file) {

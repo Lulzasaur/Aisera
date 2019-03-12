@@ -4,27 +4,24 @@ const {SECRET_API_KEY}=require(`../keys`)
 
 module.exports = function(controller) {
 
-  controller.on('hello', conductOnboarding);
-  controller.on('welcome_back', conductOnboarding);
+  controller.on('hello', function(bot, message) {
+    bot.reply(message,'Welcome! I am a bot. I can help you with weather and general salutations.');
+  });
 
-  function conductOnboarding(bot, message) {
+  controller.on('welcome_back', function(bot, message) {
+    bot.reply(message,'Welcome back!');
+  });
 
-    bot.startConversation(message, function(err, convo) {
+  controller.hears(['hello','hi','yo','whats up','hey','how'],'message_received',function(bot, message) {
+  
+      let conversationIntent = message.intents[0].entities.intent[0].value
+        if(conversationIntent==='greetings'){
+          bot.reply(message,'Greetings, fleshy human');
+        } else if(conversationIntent==='conversation'){
+          bot.reply(message,'Beep boop beep. I am doing great.');
+        }
+  });
 
-      convo.say({
-        text: 'Hello human! I am brand new Botkit bot, ready to be customized to your needs!',
-        quick_replies: [
-          {
-            title: 'Help',
-            payload: 'help',
-          },
-        ]
-      });
-
-
-    });
-
-  }
   //script for checking on keyword: weather  
   controller.hears('weather','message_received',function(bot, message) {
     
